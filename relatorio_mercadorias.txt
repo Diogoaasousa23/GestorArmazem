@@ -1,20 +1,9 @@
 ID: 1
-Descrição: rv
+Descrição: tv
 Tipo: normal
 Peso: 10.0
 Volume: 10.0
 Tag IoT: 1
-Armazém Atual: casa
-Histórico de Movimentações:
-Movida para house via transportadora amazon
-Movida para casa via transportadora amazon
-
-ID: 2
-Descrição: lixo
-Tipo: perecivel
-Peso: 10.0
-Volume: 10.0
-Tag IoT: 2
-Armazém Atual: lixeira
+Armazém Atual: house
 Histórico de Movimentações:
 
