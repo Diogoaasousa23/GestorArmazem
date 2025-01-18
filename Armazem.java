@@ -2,7 +2,8 @@ import java.util.ArrayList;
 public class Armazem {
     private String nome;
     private double capacidadeEspaco;
-    private ArrayList<Mercadoria> mercadorias;
+    private ArrayList<Mercadoria> mercadorias = new ArrayList<>();
+
     private boolean reciclagem;  // Indica se o armazém é de reciclagem
     
     // Modificação do construtor
@@ -30,6 +31,16 @@ public class Armazem {
             return false;
         }
     }
+
+    public double getCapacidadeEspaco() {
+        return capacidadeEspaco;
+    }
+    
+    public ArrayList<Mercadoria> getMercadorias() {
+        return mercadorias;
+    }
+    
+    
     
     public boolean removerMercadoria(Mercadoria mercadoria) {
         if (reciclagem) {

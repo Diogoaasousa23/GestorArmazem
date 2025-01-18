@@ -9,6 +9,10 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
+        // Carregar dados de arquivos ao iniciar
+        Persistencia.carregarDados(armazens, mercadorias, transportadoras);
+        
         boolean sair = false;
         while (!sair) {
             // Exibir Menu
@@ -48,6 +52,8 @@ public class Main {
                     gerarRelatorio(scanner);
                     break;
                 case 0:
+                    // Salvar dados antes de sair
+                    Persistencia.salvarDados(armazens, mercadorias, transportadoras);
                     sair = true;
                     System.out.println("Adeus");
                     break;

@@ -1,13 +1,13 @@
 public class Transportadora {
     private String id;
-    private String nome; // Novo atributo para o nome
+    private String nome;
     private double capacidadePeso;
     private double capacidadeVolume;
     private boolean especial; // Indica se é transporte especial (para reciclagem)
 
     public Transportadora(String id, String nome, double capacidadePeso, double capacidadeVolume, boolean especial) {
         this.id = id;
-        this.nome = nome; // Inicializando o nome
+        this.nome = nome;
         this.capacidadePeso = capacidadePeso;
         this.capacidadeVolume = capacidadeVolume;
         this.especial = especial;
@@ -32,6 +32,7 @@ public class Transportadora {
             } else {
                 origem.removerMercadoria(mercadoria);
                 destino.adicionarMercadoria(mercadoria);
+                mercadoria.movimentar(destino, this); // Atualiza o histórico da mercadoria
                 System.out.println("Transportadora " + nome + " moveu " + mercadoria.getDescricao() +
                         " de " + origem.getNome() + " para " + destino.getNome());
             }
@@ -40,6 +41,15 @@ public class Transportadora {
                     " para a mercadoria " + mercadoria.getDescricao());
         }
     }
+
+    public double getCapacidadePeso() {
+        return capacidadePeso;
+    }
+    
+    public double getCapacidadeVolume() {
+        return capacidadeVolume;
+    }
+    
 
     public boolean isEspecial() {
         return especial;
