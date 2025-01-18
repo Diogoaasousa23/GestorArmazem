@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 public class Armazem {
     private String nome;
     private double capacidadeEspaco;
@@ -13,15 +12,12 @@ public class Armazem {
         this.mercadorias = new ArrayList<>();
         this.reciclagem = reciclagem;
     }
-
     public String getNome() {
         return nome;
     }
-
     public boolean isReciclagem() {
         return reciclagem;
     }
-
     public boolean adicionarMercadoria(Mercadoria mercadoria) {
         if (capacidadeEspaco >= mercadoria.getVolume()) {
             mercadorias.add(mercadoria);
@@ -35,7 +31,6 @@ public class Armazem {
         }
     }
     
-
     public boolean removerMercadoria(Mercadoria mercadoria) {
         if (reciclagem) {
             // Armazéns de reciclagem não podem remover mercadorias
