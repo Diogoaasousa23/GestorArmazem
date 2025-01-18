@@ -101,17 +101,21 @@ public class Main {
     private static void criarTransportadora(Scanner scanner) {
         System.out.print("Digite o ID da transportadora: ");
         String id = scanner.nextLine();
+        System.out.print("Digite o nome da transportadora: ");
+        String nome = scanner.nextLine(); // Solicitando o nome
         System.out.print("Digite a capacidade de peso da transportadora (em kg): ");
         double capacidadePeso = scanner.nextDouble();
         System.out.print("Digite a capacidade de volume da transportadora (em metros cúbicos): ");
         double capacidadeVolume = scanner.nextDouble();
-        System.out.print("A transportadora é especial ? (true/false): ");
+        System.out.print("A transportadora é especial? (true/false): ");
         boolean especial = scanner.nextBoolean();
         scanner.nextLine(); // Limpar o buffer
-        Transportadora transportadora = new Transportadora(id, capacidadePeso, capacidadeVolume, especial);
+    
+        Transportadora transportadora = new Transportadora(id, nome, capacidadePeso, capacidadeVolume, especial);
         transportadoras.add(transportadora);
-        System.out.println("Transportadora criada com sucesso!");
+        System.out.println("Transportadora " + nome + " criada com sucesso!");
     }
+    
     // Função para adicionar mercadoria ao armazém
     private static void adicionarMercadoriaAoArmazem(Scanner scanner) {
         System.out.println("\nSelecione um armazém para adicionar a mercadoria:");
@@ -165,7 +169,7 @@ public class Main {
         }
     }
  // Função para movimentar mercadoria
-private static void movimentarMercadoria(Scanner scanner) {
+ private static void movimentarMercadoria(Scanner scanner) {
     System.out.println("\nSelecione uma mercadoria para movimentar:");
     for (int i = 0; i < mercadorias.size(); i++) {
         System.out.println(i + 1 + ". " + mercadorias.get(i).getDescricao());
@@ -182,7 +186,20 @@ private static void movimentarMercadoria(Scanner scanner) {
         if (armazemIndex >= 0 && armazemIndex < armazens.size()) {
             Armazem novoArmazem = armazens.get(armazemIndex);
             Mercadoria mercadoria = mercadorias.get(mercadoriaIndex);
-            mercadoria.movimentar(novoArmazem); // Passando Armazem, não String
+
+            // Adicionar seleção de transportadora
+            System.out.println("Selecione a transportadora para movimentar a mercadoria:");
+            for (int i = 0; i < transportadoras.size(); i++) {
+                System.out.println(i + 1 + ". " + transportadoras.get(i).getNome());
+            }
+            int transportadoraIndex = scanner.nextInt() - 1;
+            scanner.nextLine(); // Limpar o buffer
+            if (transportadoraIndex >= 0 && transportadoraIndex < transportadoras.size()) {
+                Transportadora transportadora = transportadoras.get(transportadoraIndex);
+                transportadora.transportar(mercadoria, mercadoria.getArmazemAtual(), novoArmazem);
+            } else {
+                System.out.println("Transportadora não encontrada.");
+            }
         } else {
             System.out.println("Armazém não encontrado.");
         }
@@ -190,6 +207,8 @@ private static void movimentarMercadoria(Scanner scanner) {
         System.out.println("Mercadoria não encontrada.");
     }
 }
+
+
     // Função para gerar relatório de mercadorias
     private static void gerarRelatorio(Scanner scanner) {
         Relatorio.gerarRelatorioMercadorias(mercadorias);
