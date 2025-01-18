@@ -5,7 +5,6 @@ public class Main {
     
     private static ArrayList<Armazem> armazens = new ArrayList<>();
     private static ArrayList<Mercadoria> mercadorias = new ArrayList<>();
-    private static ArrayList<Transportadora> transportadoras = new ArrayList<>();
     
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -16,12 +15,8 @@ public class Main {
             System.out.println("\n--- Sistema de Gestão de Armazéns ---");
             System.out.println("1. Criar Armazém");
             System.out.println("2. Criar Mercadoria");
-            System.out.println("3. Criar Transportadora");
-            System.out.println("4. Adicionar Mercadoria ao Armazém");
-            System.out.println("5. Remover Mercadoria do Armazém");
-            System.out.println("6. Movimentar Mercadoria");
-            System.out.println("7. Gerar Relatório de Mercadorias");
-            System.out.println("8. Sair");
+            System.out.println("3. Movimentar Mercadoria");
+            System.out.println("4. Sair");
             System.out.print("Escolha uma opção: ");
             
             int opcao = scanner.nextInt();
@@ -35,21 +30,9 @@ public class Main {
                     criarMercadoria(scanner);
                     break;
                 case 3:
-                    criarTransportadora(scanner);
-                    break;
-                case 4:
-                    adicionarMercadoriaAoArmazem(scanner);
-                    break;
-                case 5:
-                    removerMercadoriaDoArmazem(scanner);
-                    break;
-                case 6:
                     movimentarMercadoria(scanner);
                     break;
-                case 7:
-                    gerarRelatorio(scanner);
-                    break;
-                case 8:
+                case 4:
                     sair = true;
                     System.out.println("Saindo do sistema...");
                     break;
@@ -78,7 +61,6 @@ public class Main {
         armazens.add(armazem);
         System.out.println("Armazém criado com sucesso!");
     }
-    
 
     // Função para criar mercadoria
     private static void criarMercadoria(Scanner scanner) {
@@ -102,113 +84,32 @@ public class Main {
         System.out.println("Mercadoria criada com sucesso!");
     }
 
-    // Função para criar transportadora
-    private static void criarTransportadora(Scanner scanner) {
-        System.out.print("Digite o ID da transportadora: ");
-        String id = scanner.nextLine();
-        System.out.print("Digite a capacidade de peso da transportadora (em kg): ");
-        double capacidadePeso = scanner.nextDouble();
-        System.out.print("Digite a capacidade de volume da transportadora (em metros cúbicos): ");
-        double capacidadeVolume = scanner.nextDouble();
-        System.out.print("A transportadora é especial ? (true/false): ");
-        boolean especial = scanner.nextBoolean();
-        scanner.nextLine(); // Limpar o buffer
-
-        Transportadora transportadora = new Transportadora(id, capacidadePeso, capacidadeVolume, especial);
-        transportadoras.add(transportadora);
-        System.out.println("Transportadora criada com sucesso!");
-    }
-
-    // Função para adicionar mercadoria ao armazém
-    private static void adicionarMercadoriaAoArmazem(Scanner scanner) {
-        System.out.println("\nSelecione um armazém para adicionar a mercadoria:");
-        for (int i = 0; i < armazens.size(); i++) {
-            System.out.println(i + 1 + ". " + armazens.get(i).getNome());
+    // Função para movimentar mercadoria
+    private static void movimentarMercadoria(Scanner scanner) {
+        System.out.println("\nSelecione uma mercadoria para movimentar:");
+        for (int i = 0; i < mercadorias.size(); i++) {
+            System.out.println(i + 1 + ". " + mercadorias.get(i).getDescricao());
         }
-        int armazemIndex = scanner.nextInt() - 1;
+        int mercadoriaIndex = scanner.nextInt() - 1;
         scanner.nextLine(); // Limpar o buffer
 
-        if (armazemIndex >= 0 && armazemIndex < armazens.size()) {
-            System.out.println("\nSelecione uma mercadoria para adicionar ao armazém:");
-            for (int i = 0; i < mercadorias.size(); i++) {
-                System.out.println(i + 1 + ". " + mercadorias.get(i).getDescricao());
+        if (mercadoriaIndex >= 0 && mercadoriaIndex < mercadorias.size()) {
+            System.out.println("Selecione o novo armazém para a mercadoria:");
+            for (int i = 0; i < armazens.size(); i++) {
+                System.out.println(i + 1 + ". " + armazens.get(i).getNome());
             }
-            int mercadoriaIndex = scanner.nextInt() - 1;
+            int armazemIndex = scanner.nextInt() - 1;
             scanner.nextLine(); // Limpar o buffer
 
-            if (mercadoriaIndex >= 0 && mercadoriaIndex < mercadorias.size()) {
+            if (armazemIndex >= 0 && armazemIndex < armazens.size()) {
+                Armazem novoArmazem = armazens.get(armazemIndex);
                 Mercadoria mercadoria = mercadorias.get(mercadoriaIndex);
-                Armazem armazem = armazens.get(armazemIndex);
-                armazem.adicionarMercadoria(mercadoria);
+                mercadoria.movimentar(novoArmazem); // Passando o Armazem
             } else {
-                System.out.println("Mercadoria não encontrada.");
+                System.out.println("Armazém não encontrado.");
             }
         } else {
-            System.out.println("Armazém não encontrado.");
+            System.out.println("Mercadoria não encontrada.");
         }
-    }
-
-    // Função para remover mercadoria do armazém
-    private static void removerMercadoriaDoArmazem(Scanner scanner) {
-        System.out.println("\nSelecione um armazém para remover a mercadoria:");
-        for (int i = 0; i < armazens.size(); i++) {
-            System.out.println(i + 1 + ". " + armazens.get(i).getNome());
-        }
-        int armazemIndex = scanner.nextInt() - 1;
-        scanner.nextLine(); // Limpar o buffer
-
-        if (armazemIndex >= 0 && armazemIndex < armazens.size()) {
-            System.out.println("\nSelecione uma mercadoria para remover do armazém:");
-            for (int i = 0; i < mercadorias.size(); i++) {
-                System.out.println(i + 1 + ". " + mercadorias.get(i).getDescricao());
-            }
-            int mercadoriaIndex = scanner.nextInt() - 1;
-            scanner.nextLine(); // Limpar o buffer
-
-            if (mercadoriaIndex >= 0 && mercadoriaIndex < mercadorias.size()) {
-                Mercadoria mercadoria = mercadorias.get(mercadoriaIndex);
-                Armazem armazem = armazens.get(armazemIndex);
-                armazem.removerMercadoria(mercadoria);
-            } else {
-                System.out.println("Mercadoria não encontrada.");
-            }
-        } else {
-            System.out.println("Armazém não encontrado.");
-        }
-    }
-
- // Função para movimentar mercadoria
-private static void movimentarMercadoria(Scanner scanner) {
-    System.out.println("\nSelecione uma mercadoria para movimentar:");
-    for (int i = 0; i < mercadorias.size(); i++) {
-        System.out.println(i + 1 + ". " + mercadorias.get(i).getDescricao());
-    }
-    int mercadoriaIndex = scanner.nextInt() - 1;
-    scanner.nextLine(); // Limpar o buffer
-
-    if (mercadoriaIndex >= 0 && mercadoriaIndex < mercadorias.size()) {
-        System.out.println("Selecione o novo armazém para a mercadoria:");
-        for (int i = 0; i < armazens.size(); i++) {
-            System.out.println(i + 1 + ". " + armazens.get(i).getNome());
-        }
-        int armazemIndex = scanner.nextInt() - 1;
-        scanner.nextLine(); // Limpar o buffer
-
-        if (armazemIndex >= 0 && armazemIndex < armazens.size()) {
-            Armazem novoArmazem = armazens.get(armazemIndex);
-            Mercadoria mercadoria = mercadorias.get(mercadoriaIndex);
-            mercadoria.movimentar(novoArmazem); // Passando Armazem, não String
-        } else {
-            System.out.println("Armazém não encontrado.");
-        }
-    } else {
-        System.out.println("Mercadoria não encontrada.");
-    }
-}
-
-
-    // Função para gerar relatório de mercadorias
-    private static void gerarRelatorio(Scanner scanner) {
-        Relatorio.gerarRelatorioMercadorias(mercadorias);
     }
 }
