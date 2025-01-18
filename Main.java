@@ -49,7 +49,7 @@ public class Main {
                     break;
                 case 0:
                     sair = true;
-                    System.out.println("Saindo do sistema...");
+                    System.out.println("Adeus");
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
