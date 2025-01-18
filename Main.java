@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class Main {
-    
+
     private static ArrayList<Armazem> armazens = new ArrayList<>();
     private static ArrayList<Mercadoria> mercadorias = new ArrayList<>();
     private static ArrayList<Transportadora> transportadoras = new ArrayList<>();
-    
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean sair = false;
@@ -19,9 +20,9 @@ public class Main {
             System.out.println("5. Remover Mercadoria do Armazém");
             System.out.println("6. Movimentar Mercadoria");
             System.out.println("7. Gerar Relatório de Mercadorias");
-            System.out.println("8. Sair");
+            System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
-            
+
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer do scanner
             switch (opcao) {
@@ -46,7 +47,7 @@ public class Main {
                 case 7:
                     gerarRelatorio(scanner);
                     break;
-                case 8:
+                case 0:
                     sair = true;
                     System.out.println("Saindo do sistema...");
                     break;
@@ -54,9 +55,10 @@ public class Main {
                     System.out.println("Opção inválida. Tente novamente.");
             }
         }
-        
+
         scanner.close();
     }
+
     private static void criarArmazen(Scanner scanner) {
         System.out.print("Digite o nome do armazém: ");
         String nome = scanner.nextLine();
