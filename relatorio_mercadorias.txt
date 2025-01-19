@@ -4,6 +4,25 @@ Tipo: normal
 Peso: 10.0
 Volume: 10.0
 Tag IoT: 1
-Armazém Atual: house
+Armazém Atual: Não alocada
 Histórico de Movimentações:
+
+ID: 1
+Descrição: comida
+Tipo: perecivel
+Peso: 10.0
+Volume: 10.0
+Tag IoT: 2
+Armazém Atual: Não alocada
+Histórico de Movimentações:
+
+ID: 3
+Descrição: Computadores
+Tipo: Normal
+Peso: 100.0
+Volume: 100.0
+Tag IoT: 3
+Armazém Atual: casa
+Histórico de Movimentações:
+Movida para casa via transportadora AWS
 

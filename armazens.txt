@@ -1,1 +1,3 @@
 house,srt,980.0,false
+casa,rua2,9900.0,false
+Reciclagem,rua5,9900.0,true
