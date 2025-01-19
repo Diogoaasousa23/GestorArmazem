@@ -23,7 +23,8 @@ public class Main {
             System.out.println("4. Adicionar Mercadoria ao Armazém");
             System.out.println("5. Remover Mercadoria do Armazém");
             System.out.println("6. Movimentar Mercadoria");
-            System.out.println("7. Gerar Relatório de Mercadorias");
+            System.out.println("7. Localizar mercadoria por tag IoT");
+            System.out.println("8. Gerar Relatório de Mercadorias");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
 
@@ -49,6 +50,9 @@ public class Main {
                     movimentarMercadoria(scanner);
                     break;
                 case 7:
+                    localizarMercadoriaPorTag(scanner);
+                    break;
+                case 8:
                     gerarRelatorio(scanner);
                     break;
                 case 0:
@@ -173,6 +177,29 @@ public class Main {
         } else {
             System.out.println("Armazém não encontrado.");
         }
+    }
+
+    //Localizar mercadoria por tag IoT
+    private static void localizarMercadoriaPorTag(Scanner scanner) {
+        System.out.print("Digite o tag IoT da mercadoria: ");
+        String tagIoT = scanner.nextLine();
+
+        Mercadoria mercadoria = encontrarMercadoriaPorTag(tagIoT);
+        if (mercadoria != null) {
+            System.out.println("Mercadoria encontrada: " + mercadoria.getDescricao());
+            System.out.println("Localização atual: " + (mercadoria.getArmazemAtual() != null ? mercadoria.getArmazemAtual().getNome() : "Desconhecida"));
+        } else {
+            System.out.println("Mercadoria com tag IoT " + tagIoT + " não encontrada.");
+        }
+    }
+
+    private static Mercadoria encontrarMercadoriaPorTag(String tagIoT) {
+        for (Mercadoria mercadoria : mercadorias) {
+            if (mercadoria.getTagIoT().equals(tagIoT)) {
+                return mercadoria;
+            }
+        }
+        return null;
     }
  // Função para movimentar mercadoria
  private static void movimentarMercadoria(Scanner scanner) {

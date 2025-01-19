@@ -1,1 +1,1 @@
-house,srt,1000.0,false
+house,srt,980.0,false
