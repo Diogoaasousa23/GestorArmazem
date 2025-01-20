@@ -10,6 +10,6 @@ public class TagIoT {
     }
 
     public void rastrear() {
-        System.out.println("Rastreando mercadoria com Tag IoT: " + tagId);
+        System.out.println("Rastrear mercadoria com Tag IoT: " + tagId);
     }
 }

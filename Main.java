@@ -70,11 +70,11 @@ public class Main {
     }
 
     private static void criarArmazen(Scanner scanner) {
-        System.out.print("Digite o nome do armazém: ");
+        System.out.print("Insira o nome do armazém: ");
         String nome = scanner.nextLine();
-        System.out.print("Digite a morada do armazém: ");
+        System.out.print("Insira a morada do armazém: ");
         String morada = scanner.nextLine();
-        System.out.print("Digite a capacidade do armazém (em metros cúbicos): ");
+        System.out.print("Insira a capacidade do armazém (em metros cúbicos): ");
         double capacidadeEspaco = scanner.nextDouble();
         scanner.nextLine(); // Limpar o buffer
     
@@ -89,19 +89,19 @@ public class Main {
     
     // Função para criar mercadoria
     private static void criarMercadoria(Scanner scanner) {
-        System.out.print("Digite o ID da mercadoria: ");
+        System.out.print("Insira o ID da mercadoria: ");
         int id = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer
-        System.out.print("Digite a descrição da mercadoria: ");
+        System.out.print("Insira a descrição da mercadoria: ");
         String descricao = scanner.nextLine();
-        System.out.print("Digite o tipo da mercadoria (Normal, Frágil, Perecível): ");
+        System.out.print("Insira o tipo da mercadoria (Normal, Frágil, Perecível): ");
         String tipo = scanner.nextLine();
-        System.out.print("Digite o peso da mercadoria (em kg): ");
+        System.out.print("Insira o peso da mercadoria (em kg): ");
         double peso = scanner.nextDouble();
-        System.out.print("Digite o volume da mercadoria (em metros cúbicos): ");
+        System.out.print("Insira o volume da mercadoria (em metros cúbicos): ");
         double volume = scanner.nextDouble();
         scanner.nextLine(); // Limpar o buffer
-        System.out.print("Digite o tag IoT da mercadoria: ");
+        System.out.print("Insira o tag IoT da mercadoria: ");
         String tagIoT = scanner.nextLine();
         Mercadoria mercadoria = new Mercadoria(id, descricao, tipo, peso, volume, tagIoT);
         mercadorias.add(mercadoria);
@@ -109,13 +109,13 @@ public class Main {
     }
     // Função para criar transportadora
     private static void criarTransportadora(Scanner scanner) {
-        System.out.print("Digite o ID da transportadora: ");
+        System.out.print("Insira o ID da transportadora: ");
         String id = scanner.nextLine();
-        System.out.print("Digite o nome da transportadora: ");
+        System.out.print("Insira o nome da transportadora: ");
         String nome = scanner.nextLine(); // Solicitando o nome
-        System.out.print("Digite a capacidade de peso da transportadora (em kg): ");
+        System.out.print("Insira a capacidade de peso da transportadora (em kg): ");
         double capacidadePeso = scanner.nextDouble();
-        System.out.print("Digite a capacidade de volume da transportadora (em metros cúbicos): ");
+        System.out.print("Insira a capacidade de volume da transportadora (em metros cúbicos): ");
         double capacidadeVolume = scanner.nextDouble();
         System.out.print("A transportadora é especial? (true/false): ");
         boolean especial = scanner.nextBoolean();
@@ -181,7 +181,7 @@ public class Main {
 
     //Localizar mercadoria por tag IoT
     private static void localizarMercadoriaPorTag(Scanner scanner) {
-        System.out.print("Digite o tag IoT da mercadoria: ");
+        System.out.print("Insira o tag IoT da mercadoria: ");
         String tagIoT = scanner.nextLine();
 
         Mercadoria mercadoria = encontrarMercadoriaPorTag(tagIoT);
