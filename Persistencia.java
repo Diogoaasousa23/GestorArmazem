@@ -23,7 +23,7 @@ public class Persistencia {
             // Salvar transportadoras
             BufferedWriter writerTransportadoras = new BufferedWriter(new FileWriter("transportadoras.txt"));
             for (Transportadora transportadora : transportadoras) {
-                writerTransportadoras.write(transportadora.getId() + "," + transportadora.getNome() + "," + transportadora.getCapacidadePeso() + "," + transportadora.getCapacidadeVolume() + "," + transportadora.isEspecial() + "\n");
+                writerTransportadoras.write(transportadora.getId() + "," + transportadora.getNome() + "," + transportadora.getCapacidadePeso() + "," + transportadora.getCapacidadeVolume() + "," + transportadora.isEspecial() + "," + transportadora.isInterna() + "\n");
             }
             writerTransportadoras.close();
 
@@ -72,7 +72,8 @@ public class Persistencia {
                 double capacidadePeso = Double.parseDouble(dados[2]);
                 double capacidadeVolume = Double.parseDouble(dados[3]);
                 boolean especial = Boolean.parseBoolean(dados[4]);
-                transportadoras.add(new Transportadora(id, nome, capacidadePeso, capacidadeVolume, especial));
+                boolean interna = Boolean.parseBoolean(dados[5]);
+                transportadoras.add(new Transportadora(id, nome, capacidadePeso, capacidadeVolume, especial, interna));
             }
             readerTransportadoras.close();
 

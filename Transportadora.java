@@ -4,13 +4,15 @@ public class Transportadora {
     private double capacidadePeso;
     private double capacidadeVolume;
     private boolean especial; // Indica se é transporte especial (para reciclagem)
+    private boolean interna; // Novo atributo para indicar se é interna
 
-    public Transportadora(String id, String nome, double capacidadePeso, double capacidadeVolume, boolean especial) {
+    public Transportadora(String id, String nome, double capacidadePeso, double capacidadeVolume, boolean especial, boolean interna) {
         this.id = id;
         this.nome = nome;
         this.capacidadePeso = capacidadePeso;
         this.capacidadeVolume = capacidadeVolume;
         this.especial = especial;
+        this.interna = interna;
     }
 
     public String getId() {
@@ -53,5 +55,13 @@ public class Transportadora {
 
     public boolean isEspecial() {
         return especial;
+    }
+
+    public boolean isInterna() {
+        return interna;
+    }
+
+    public void setInterna(boolean interna) {
+        this.interna = interna;
     }
 }

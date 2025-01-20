@@ -1,2 +1,7 @@
-1,AWS,10000.0,10000.0,false
-2,Lixeira,10000.0,10000.0,true
+1,AWS,10000.0,10000.0,false,false
+2,Lixeira,10000.0,10000.0,true,false
+1,Amazon,1000.0,1000.0,false,false
+4,Empilhadora,100.0,100.0,false,false
+5,Empacotadora,100.0,100.0,false,true
+6,Correios,1000.0,1000.0,false,false
+7,Empilhadora2,1000.0,100.0,false,true

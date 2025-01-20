@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class Main {
 
     private static ArrayList<Armazem> armazens = new ArrayList<>();
@@ -77,11 +78,15 @@ public class Main {
         System.out.print("Insira a capacidade do armazém (em metros cúbicos): ");
         double capacidadeEspaco = scanner.nextDouble();
         scanner.nextLine(); // Limpar o buffer
-    
-        System.out.print("Este é um armazém de reciclagem? (true/false): ");
-        boolean reciclagem = scanner.nextBoolean();
+
+        // Modificação para seleção numérica de armazém de reciclagem
+        System.out.println("Este é um armazém de reciclagem?");
+        System.out.println("1. Sim");
+        System.out.println("2. Não");
+        int reciclagemOpcao = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer
-    
+        boolean reciclagem = reciclagemOpcao == 1;
+
         Armazem armazem = new Armazem(nome, morada, capacidadeEspaco, reciclagem);
         armazens.add(armazem);
         System.out.println("Armazém criado com sucesso!");
@@ -94,8 +99,30 @@ public class Main {
         scanner.nextLine(); // Limpar o buffer
         System.out.print("Insira a descrição da mercadoria: ");
         String descricao = scanner.nextLine();
-        System.out.print("Insira o tipo da mercadoria (Normal, Frágil, Perecível): ");
-        String tipo = scanner.nextLine();
+
+        // Modificação para seleção numérica de tipo de mercadoria
+        System.out.println("Selecione o tipo da mercadoria:");
+        System.out.println("1. Normal");
+        System.out.println("2. Frágil");
+        System.out.println("3. Perecível");
+        int tipoOpcao = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer
+        String tipo;
+        switch (tipoOpcao) {
+            case 1:
+                tipo = "Normal";
+                break;
+            case 2:
+                tipo = "Frágil";
+                break;
+            case 3:
+                tipo = "Perecível";
+                break;
+            default:
+                System.out.println("Opção inválida. Definindo como Normal.");
+                tipo = "Normal";
+        }
+
         System.out.print("Insira o peso da mercadoria (em kg): ");
         double peso = scanner.nextDouble();
         System.out.print("Insira o volume da mercadoria (em metros cúbicos): ");
@@ -117,11 +144,25 @@ public class Main {
         double capacidadePeso = scanner.nextDouble();
         System.out.print("Insira a capacidade de volume da transportadora (em metros cúbicos): ");
         double capacidadeVolume = scanner.nextDouble();
-        System.out.print("A transportadora é especial? (true/false): ");
-        boolean especial = scanner.nextBoolean();
         scanner.nextLine(); // Limpar o buffer
-    
-        Transportadora transportadora = new Transportadora(id, nome, capacidadePeso, capacidadeVolume, especial);
+
+        // Modificação para seleção numérica de transportadora especial
+        System.out.println("A transportadora é especial?");
+        System.out.println("1. Sim");
+        System.out.println("2. Não");
+        int especialOpcao = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer
+        boolean especial = especialOpcao == 1;
+
+        // Modificação para seleção numérica de tipo de transportadora
+        System.out.println("Selecione o tipo de transportadora:");
+        System.out.println("1. Interna");
+        System.out.println("2. Externa");
+        int tipo = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer
+        boolean interna = tipo == 1;
+
+        Transportadora transportadora = new Transportadora(id, nome, capacidadePeso, capacidadeVolume, especial, interna);
         transportadoras.add(transportadora);
         System.out.println("Transportadora " + nome + " criada com sucesso!");
     }
